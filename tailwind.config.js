@@ -11,6 +11,9 @@ export default {
         second: '#18396E',
         third: '#385B91',
       },
+      backgroundImage: {
+        wallpaper: "url('src/assets/wallpaper.jpg')",
+      },
     },
   },
   plugins: [],

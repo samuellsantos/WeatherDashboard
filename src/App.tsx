@@ -1,13 +1,12 @@
+import { LeftContainer } from "./components/leftContainer/LeftContainer"
 
 
 function App() {
 
   return (
-    <>
-      <h1 className="bg-red-500">
-        Teste
-      </h1>
-    </>
+    <div className="font-Poppins">
+      <LeftContainer />
+    </div>
   )
 }
 
