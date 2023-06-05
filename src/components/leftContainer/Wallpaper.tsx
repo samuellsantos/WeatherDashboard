@@ -1,5 +1,3 @@
-import React from 'react'
-import wallpaper from '../../assets/wallpaper.jpg'
 
 export const Wallpaper = () => {
   return (

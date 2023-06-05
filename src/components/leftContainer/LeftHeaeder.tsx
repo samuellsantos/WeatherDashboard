@@ -1,4 +1,3 @@
-import React from 'react'
 import { BiBell } from 'react-icons/bi'
 import { HiOutlineUser } from 'react-icons/hi'
 import { IoSearch } from 'react-icons/io5'
@@ -20,7 +19,7 @@ export const LeftHeaeder = () => {
 
   return (
     <header className='w-full text-blue-950'>
-      <div className='flex items-center justify-between gap-x-12 p-8'>
+      <div className='flex items-center justify-between gap-x-12'>
         <div>
           <h1 className='text-3xl font-medium'>
             {formatedDate}
