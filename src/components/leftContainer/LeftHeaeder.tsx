@@ -1,6 +1,11 @@
+import {useState} from 'react'
 import { BiBell } from 'react-icons/bi'
 import { HiOutlineUser } from 'react-icons/hi'
 import { IoSearch } from 'react-icons/io5'
+
+import { useDispatch, useSelector } from 'react-redux'
+import GetStateType from '../../store'
+import { changeCity } from '../../features/changeCityName/ChangeCityName-slice'
 
 export const LeftHeaeder = () => {
   const months = [
@@ -14,6 +19,26 @@ export const LeftHeaeder = () => {
   const year = currentDate.getFullYear()
 
   const formatedDate = `${months[month]} ${year}`
+
+  const [valueInput, setValueInput] = useState('')
+  const dispatch = useDispatch()
+
+  const handleChange = (event: any) => {
+    setValueInput(event.target.value);
+  };
+  
+  const city = useSelector((state: GetStateType) => state.changeCity)
+
+  const dispatchAction = () => {
+    dispatch(changeCity(valueInput))
+  }
+
+  const dispatchWithEnterKeyDown = (event: any) => {
+    if(event.key === 'Enter') {
+      dispatch(changeCity(valueInput))
+    }
+  }
+
   
 
 
@@ -45,9 +70,15 @@ export const LeftHeaeder = () => {
             type="text" 
             className='bg-slate-100 w-64 h-10 pl-4 pr-12 rounded focus:outline-slate-300' 
             placeholder='Name city here...'
+            onChange={handleChange}
+            value={valueInput}
+            onKeyDown={dispatchWithEnterKeyDown}
             />
 
-            <button className='absolute right-4 top-3 text-slate-400'>
+            <button 
+            className='absolute right-4 top-3 text-slate-400'
+            onClick={dispatchAction}
+            >
               <IoSearch size={20}/>
             </button>
           </div>

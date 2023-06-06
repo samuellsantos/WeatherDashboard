@@ -1,13 +1,12 @@
-import { LeftContainer } from "./components/leftContainer/LeftContainer"
-
+import { LeftContainer } from "./components/leftContainer/LeftContainer";
 
 function App() {
 
   return (
-    <div className="font-Poppins">
-      <LeftContainer />
-    </div>
-  )
+      <div className="font-Poppins">
+        <LeftContainer />
+      </div>
+  );
 }
 
-export default App
+export default App;

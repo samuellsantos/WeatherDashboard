@@ -1,56 +1,49 @@
 import { useState, useEffect } from 'react'
+
+/* ICONS */
 import { FaWind } from 'react-icons/fa'
 import { WiBarometer } from 'react-icons/wi'
 import { FaCloudSunRain } from 'react-icons/fa'
 import { IoMdSunny } from 'react-icons/io'
 
+/* REACT REDUX */
+import { useSelector } from 'react-redux'
+
+import GetStateType from '../../store'
+
 import { OverviewItems } from './OverviewItems'
 
+
+
+
 export const LeftMain = () => {
-  const [latitude, setLatitude] = useState<number | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
+  const city = useSelector((state: GetStateType) => state.changeCity)
+
+
+
+
   const [pressure, setPressure] = useState<number | null>(null);
   const [wind, setWind] = useState<number | null>(null);
   const [humidity, SetHumidity] = useState<number | null>(null);
   const [maxTemperature, setMaxTemperature] = useState<number | null>(null);
-  const [city, setCity] = useState<string | null>(null);
+
+
 
   useEffect(() => {
-    const getLocation = async () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition (
-          position => {
-            setLatitude(position.coords.latitude);
-            setLongitude(position.coords.longitude)
-          },
-          error => {
-            console.log(error)
-          }
-        )
-      } else {
-        console.log('Geolocation is not supported by this browser.')
-      }
-    }
-    getLocation()
-  },[])
-
-  useEffect(() => {
-    if(latitude !== null && longitude !== null) {
-      getTemperature(latitude, longitude)
-    }
-  }, [latitude, longitude])
+    getTemperature()
+  }, [city])
 
 
-  const getTemperature = async(latitude: number, longitude: number) => {
+  const getTemperature = async() => {
     const API_KEY = '3905b56a5d0ad9c3e625933cb4c99de6' 
-    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`);
+    const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`);
 
     const data = await response.json()
     setPressure(data.main.pressure)
     setWind(data.wind.speed)
     setMaxTemperature(data.main.temp_max)
     SetHumidity(data.main.humidity)
-    setCity(data.name)
+    /* setCity(data.name) */
     console.log(data)
   }
 
