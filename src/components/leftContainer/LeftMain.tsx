@@ -11,8 +11,10 @@ import { useSelector } from 'react-redux'
 
 import GetStateType from '../../store'
 
+/* COMPONENTS */
 import { OverviewItems } from './OverviewItems'
 import { ErrorModal } from '../ErrorModal'
+import { LeftChart } from './LeftChart'
 
 
 
@@ -27,7 +29,7 @@ export const LeftMain = () => {
   const [pressure, setPressure] = useState<number | null>(null);
   const [wind, setWind] = useState<number | null>(null);
   const [humidity, SetHumidity] = useState<number | null>(null);
-  const [maxTemperature, setMaxTemperature] = useState<number | null>(null);
+  const [temperature, setTemperature] = useState<number | null>(null);
   const [country, setCountry] = useState('BR')
 
 
@@ -46,7 +48,7 @@ export const LeftMain = () => {
 
       setPressure(data.main.pressure)
       setWind(data.wind.speed)
-      setMaxTemperature(data.main.temp_max)
+      setTemperature(data.main.temp)
       SetHumidity(data.main.humidity)
       setError(false)
       console.log(data)
@@ -91,7 +93,7 @@ export const LeftMain = () => {
         </p>
       </div>
       
-      <div>
+      <div className='mb-24'>
         <div className='flex items-center gap-x-8 mb-8'>
           <OverviewItems icon={<FaWind size={30} />} name='Wind Speed' details={error ? '0' : `${wind?.toFixed()}km/h`}/>
           <OverviewItems icon={<FaCloudSunRain size={30} color={'rgb(96 200 300)'}/>} name='Humidity' details={error ? '0' : `${humidity}%`}/>
@@ -99,8 +101,16 @@ export const LeftMain = () => {
 
         <div className='flex items-center gap-x-8'>
           <OverviewItems icon={<WiBarometer size={35} />} name='Atm Pressure' details={error ? '0' : `${pressure}hpa`}/>
-          <OverviewItems icon={<IoMdSunny size={30} color={'orange'}/>} name='Max temperature' details={error ? '0' : `${maxTemperature?.toFixed()}ºC`}/>
+          <OverviewItems icon={<IoMdSunny size={30} color={'orange'}/>} name='Max temperature' details={error ? '0' : `${temperature?.toFixed()}ºC`}/>
         </div>
+      </div>
+
+
+      <div>
+        <h3 className='text-xl font-bold mb-4'>
+          Temperature tommorrow in <span className='text-third underline'>{city}</span> in ºC
+        </h3>
+        <LeftChart />
       </div>
     </div>
   )

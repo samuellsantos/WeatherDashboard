@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = 'Brazil';
+const initialState = 'Brasil';
 
 export const citySlice = createSlice({
   name: 'changeCity',
