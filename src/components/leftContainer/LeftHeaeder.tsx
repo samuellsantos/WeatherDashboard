@@ -3,9 +3,9 @@ import { BiBell } from 'react-icons/bi'
 import { HiOutlineUser } from 'react-icons/hi'
 import { IoSearch } from 'react-icons/io5'
 
-import { useDispatch, useSelector } from 'react-redux'
-import GetStateType from '../../store'
+import { useDispatch } from 'react-redux'
 import { changeCity } from '../../features/changeCityName/ChangeCityName-slice'
+
 
 export const LeftHeaeder = () => {
   const months = [
@@ -14,9 +14,10 @@ export const LeftHeaeder = () => {
   ];
 
   const currentDate = new Date()
-  const day = currentDate.getDay()
+  const day = currentDate.getDate()
   const month = currentDate.getMonth()
   const year = currentDate.getFullYear()
+
 
   const formatedDate = `${months[month]} ${year}`
 
@@ -27,7 +28,6 @@ export const LeftHeaeder = () => {
     setValueInput(event.target.value);
   };
   
-  const city = useSelector((state: GetStateType) => state.changeCity)
 
   const dispatchAction = () => {
     dispatch(changeCity(valueInput))
@@ -54,7 +54,7 @@ export const LeftHeaeder = () => {
             {months[month]}
             </span>
             <span>
-              {day < 10 && `0${day}`}
+              {day < 10 ? `0${day}` : `${day}`}
             </span> 
             <span>
               {year}

@@ -7,9 +7,11 @@ import { FaCloudSunRain } from 'react-icons/fa'
 import { IoMdSunny } from 'react-icons/io'
 
 /* REACT REDUX */
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-import GetStateType from '../../store'
+/* SLICE REDUX */
+import { changeCity } from '../../features/changeCityName/ChangeCityName-slice'
+import { Sunrise, Sunset } from '../../features/sunriseSunset/SunriseSunset-slice'
 
 /* COMPONENTS */
 import { OverviewItems } from './OverviewItems'
@@ -19,9 +21,12 @@ import { LeftChart } from './LeftChart'
 
 
 
-export const LeftMain = () => {
-  const city = useSelector((state: GetStateType) => state.changeCity)
 
+
+
+export const LeftMain = () => {
+  const city = useSelector((state: string | any) => state.changeCity)
+  const dispatch = useDispatch()
 
 
   const [error, setError] = useState(false)
@@ -30,8 +35,19 @@ export const LeftMain = () => {
   const [wind, setWind] = useState<number | null>(null);
   const [humidity, SetHumidity] = useState<number | null>(null);
   const [temperature, setTemperature] = useState<number | null>(null);
-  const [country, setCountry] = useState('BR')
 
+
+
+  /* REDUX */
+  const [country, setCountry] = useState('BR')
+  const [sunrise, setSunrise] = useState('')
+  const [sunset, setSunset] = useState('')
+
+
+  useEffect(() => {
+    dispatch(Sunrise(sunrise))
+    dispatch(Sunset(sunset))
+  }, [sunrise, sunset])
 
 
   useEffect(() => {
@@ -50,6 +66,8 @@ export const LeftMain = () => {
       setWind(data.wind.speed)
       setTemperature(data.main.temp)
       SetHumidity(data.main.humidity)
+      setSunrise(data.sys.sunrise)
+      setSunset(data.sys.sunset)
       setError(false)
       console.log(data)
 
@@ -59,6 +77,7 @@ export const LeftMain = () => {
       setCountry(dataCountry.map((country: any) => country.flags.svg))
 
     } catch(error) {
+      dispatch(changeCity(''))
       setModal(true)
       setTimeout(() => {
         setModal(false)
@@ -86,10 +105,10 @@ export const LeftMain = () => {
           Today Overview
         </h2>
         <p className='flex items-center gap-x-2'>
-          <span>
+          <span className='uppercase'>
             {error ? 'City not found' : city}
           </span>
-          <img src={country} alt={`${country} flag`} className='w-4'/>
+          {error === false && <img src={country} alt={`${country} flag`} className='w-4'/>}
         </p>
       </div>
       
@@ -101,16 +120,20 @@ export const LeftMain = () => {
 
         <div className='flex items-center gap-x-8'>
           <OverviewItems icon={<WiBarometer size={35} />} name='Atm Pressure' details={error ? '0' : `${pressure}hpa`}/>
-          <OverviewItems icon={<IoMdSunny size={30} color={'orange'}/>} name='Max temperature' details={error ? '0' : `${temperature?.toFixed()}ºC`}/>
+          <OverviewItems icon={<IoMdSunny size={30} color={'orange'}/>} name='Temperature' details={error ? '0' : `${temperature?.toFixed()}ºC`}/>
         </div>
       </div>
 
 
       <div>
-        <h3 className='text-xl font-bold mb-4'>
-          Temperature tommorrow in <span className='text-third underline'>{city}</span> in ºC
+        {error ? <h3>
+          City not found
+        </h3> : <div>
+          <h3 className='text-xl font-bold mb-4'>
+          Temperature tommorrow in <span className='text-third underline uppercase'>{city}</span> in ºC
         </h3>
-        <LeftChart />
+        <LeftChart />  
+        </div>}
       </div>
     </div>
   )

@@ -8,7 +8,7 @@ export const LeftChart = () => {
   const chartRef = useRef<HTMLCanvasElement>(null);
   const chartInstanceRef = useRef<Chart | null>(null);
   const [temperatures, setTemperatures] = useState([])
-  const city = useSelector((state: GetStateType) => state.changeCity)
+  const city = useSelector((state: any) => state.changeCity)
 
 
   useEffect(()=> {
@@ -21,7 +21,7 @@ export const LeftChart = () => {
       const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`)
 
       const data = await response.json()
-      const eightHourForecast = data.list.slice(0, 8)
+      const eightHourForecast = data.list.slice(2, 10)
       setTemperatures(eightHourForecast)
     } 
 
@@ -47,7 +47,7 @@ export const LeftChart = () => {
                 {
                   label: 'Tommorrow Temperatures',
                   fill: true,
-                  data: temperatures.map((temp) => temp.main.temp.toFixed()),
+                  data: temperatures.map((temp: any) => temp.main.temp.toFixed()),
                   backgroundColor: gradient,
                   borderColor: '#fff',
                   borderWidth: 2,
@@ -59,6 +59,27 @@ export const LeftChart = () => {
               scales: {
                 y: {
                   beginAtZero: true,
+                  grid: {
+                    color: '#ddd', // Cor das linhas de grade do eixo Y
+                  },
+                  ticks: {
+                    color: '#777', // Cor dos rótulos do eixo Y
+                  },
+                },
+                x: {
+                  grid: {
+                    display: false, // Remover as linhas de grade do eixo X
+                  },
+                  ticks: {
+                    color: '#777', // Cor dos rótulos do eixo X
+                  },
+                },
+              },
+              plugins: {
+                legend: {
+                  labels: {
+                    color: '#777', // Cor dos rótulos da legenda
+                  },
                 },
               },
             },
