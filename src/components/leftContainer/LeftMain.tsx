@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux'
 /* SLICE REDUX */
 import { changeCity } from '../../features/changeCityName/ChangeCityName-slice'
 import { Sunrise, Sunset } from '../../features/sunriseSunset/SunriseSunset-slice'
+import { iconID } from '../../features/iconId/IconId-slice'
 
 /* COMPONENTS */
 import { OverviewItems } from './OverviewItems'
@@ -42,9 +43,16 @@ export const LeftMain = () => {
   const [country, setCountry] = useState('BR')
   const [sunrise, setSunrise] = useState('')
   const [sunset, setSunset] = useState('')
+  const [icon, setIcon] = useState('')
 
 
   useEffect(() => {
+    if(error) dispatch(iconID(`http://openweathermap.org/img/w/null}.png`))
+    dispatch(iconID(`http://openweathermap.org/img/w/${icon}.png`))
+  }, [icon])
+
+  useEffect(() => {
+    if(error) null
     dispatch(Sunrise(sunrise))
     dispatch(Sunset(sunset))
   }, [sunrise, sunset])
@@ -68,6 +76,7 @@ export const LeftMain = () => {
       SetHumidity(data.main.humidity)
       setSunrise(data.sys.sunrise)
       setSunset(data.sys.sunset)
+      setIcon(data.weather[0].icon)
       setError(false)
       console.log(data)
 
