@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import {FaSmog} from 'react-icons/fa'
 import { FaCloudRain } from 'react-icons/fa'
 import { OverviewItems } from '../leftContainer/OverviewItems'
+import { SunriseSunset } from './SunriseSunset'
 
 export const RightMain = () => {
   const city = useSelector((state: any) => state.changeCity)
@@ -40,10 +41,11 @@ export const RightMain = () => {
       <h4 className='text-light text-[14px] text-slate-400'>
         PM2.5 refers to fine particles with a diameter of 2.5 micrometers or less in the air, emitted by various sources such as fossil fuel combustion, biomass burning, industrial emissions, and dust.
       </h4>
-      <div className='mt-8 flex items-center justify-between'>
+      <div className='mt-8 mb-16 flex items-center justify-between'>
         <OverviewItems name='Aqi' details={aqi} icon={<FaSmog size={30}/>} mode='dark'/>
         <OverviewItems name='Pm 2.5' details={`${pm} µg/m³`} icon={<FaCloudRain size={30}/>} mode='dark'/>
       </div>
+      <SunriseSunset />
   
     </div>
   )

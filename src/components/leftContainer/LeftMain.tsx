@@ -148,7 +148,7 @@ export const LeftMain = () => {
           City not found
         </h3> : <div>
           <h3 className='text-xl font-bold mb-4'>
-          Temperatures in <span className='text-third underline uppercase'>{city}</span> in ºC
+          Temperatures <span className='text-third underline uppercase'>{city}</span> in ºC
         </h3>
         <LeftChart />
         <h4 className='text-slate-400 text-[12px] mt-8'>
