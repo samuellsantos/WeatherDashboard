@@ -88,9 +88,7 @@ export const LeftMain = () => {
       setSunset(data.sys.sunset)
       setIcon(data.weather[0].icon)
       setDescription(data.weather[0].description)
-      setError(false)
-      console.log(data)
-
+      setError(false) 
       const responseCountry = await fetch (`https://restcountries.com/v3.1/alpha/${data.sys.country}
       `)
       const dataCountry = await responseCountry.json()
@@ -134,13 +132,13 @@ export const LeftMain = () => {
       
       <div className='mb-24'>
         <div className='flex items-center gap-x-8 mb-8'>
-          <OverviewItems icon={<FaWind size={30} />} name='Wind Speed' details={error ? '0' : `${wind?.toFixed()}km/h`}/>
-          <OverviewItems icon={<FaCloudSunRain size={30} color={'rgb(96 200 300)'}/>} name='Humidity' details={error ? '0' : `${humidity}%`}/>
+          <OverviewItems mode='light' icon={<FaWind size={30} />} name='Wind Speed' details={error ? '0' : `${wind?.toFixed()}km/h`}/>
+          <OverviewItems mode='light' icon={<FaCloudSunRain size={30} color={'rgb(96 200 300)'}/>} name='Humidity' details={error ? '0' : `${humidity}%`}/>
         </div>
 
         <div className='flex items-center gap-x-8'>
-          <OverviewItems icon={<WiBarometer size={35} />} name='Atm Pressure' details={error ? '0' : `${pressure}hpa`}/>
-          <OverviewItems icon={<IoMdSunny size={30} color={'orange'}/>} name='Temperature' details={error ? '0' : `${temperature?.toFixed()}ºC`}/>
+          <OverviewItems mode='light' icon={<WiBarometer size={35} />} name='Atm Pressure' details={error ? '0' : `${pressure}hpa`}/>
+          <OverviewItems mode='light' icon={<IoMdSunny size={30} color={'orange'}/>} name='Temperature' details={error ? '0' : `${temperature?.toFixed()}ºC`}/>
         </div>
       </div>
 

@@ -23,6 +23,7 @@ export const LeftChart = () => {
 
       const data = await response.json()
       const eightHourForecast = data.list.slice(0, 8)
+
       const dataHour = eightHourForecast.map((forecast: any) => {
         const dataTime = forecast.dt_txt;
         const time = dataTime.split(' ')[1];
