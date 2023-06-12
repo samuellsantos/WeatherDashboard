@@ -18,6 +18,7 @@ import { iconID } from '../../features/iconId/IconId-slice'
 import { OverviewItems } from './OverviewItems'
 import { ErrorModal } from '../ErrorModal'
 import { LeftChart } from './LeftChart'
+import { weatherDescription, weatherTemperature } from '../../features/weather/Weather-slice'
 
 
 
@@ -44,7 +45,16 @@ export const LeftMain = () => {
   const [sunrise, setSunrise] = useState('')
   const [sunset, setSunset] = useState('')
   const [icon, setIcon] = useState('')
+  const [description, setDescription] = useState('')
 
+
+  useEffect(() => {
+    dispatch(weatherDescription(description))
+  }, [description])
+
+  useEffect(() => {
+    dispatch(weatherTemperature(temperature))
+  }, [temperature])
 
   useEffect(() => {
     if(error) dispatch(iconID(`http://openweathermap.org/img/w/null}.png`))
@@ -77,6 +87,7 @@ export const LeftMain = () => {
       setSunrise(data.sys.sunrise)
       setSunset(data.sys.sunset)
       setIcon(data.weather[0].icon)
+      setDescription(data.weather[0].description)
       setError(false)
       console.log(data)
 
@@ -141,7 +152,10 @@ export const LeftMain = () => {
           <h3 className='text-xl font-bold mb-4'>
           Temperatures in <span className='text-third underline uppercase'>{city}</span> in ºC
         </h3>
-        <LeftChart />  
+        <LeftChart />
+        <h4 className='text-slate-400 text-[12px] mt-8'>
+          These three-hour intervals are based on Coordinated Universal Time (UTC).
+        </h4>  
         </div>}
       </div>
     </div>
