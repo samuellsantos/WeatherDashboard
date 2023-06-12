@@ -8,12 +8,12 @@ export const RightHeader = () => {
   return (
     <header>
       <div>
-        <h1 className='text-3xl uppercase'>
+        <h1 className='text-3xl uppercase mb-24'>
           {city}
         </h1>
         
         <div>
-          <img src={iconID} alt="" />
+          <img src={iconID} alt="weather icon" />
         </div>
       </div>
     </header>

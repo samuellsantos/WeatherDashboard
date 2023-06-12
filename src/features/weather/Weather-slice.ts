@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = '';
 
-export const iconSlice = createSlice({
-  name: 'icon',
+export const weather = createSlice({
+  name: 'weather',
   initialState,
   reducers: {
     iconID: (state, action) => {
@@ -12,5 +12,5 @@ export const iconSlice = createSlice({
   },
 });
 
-export const { iconID } = iconSlice.actions;
-export const iconReducer = iconSlice.reducer;
+export const { iconID } = weather.actions;
+export const iconReducer = weather.reducer;

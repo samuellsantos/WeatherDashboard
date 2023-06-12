@@ -8,6 +8,7 @@ export const LeftChart = () => {
   const chartRef = useRef<HTMLCanvasElement>(null);
   const chartInstanceRef = useRef<Chart | null>(null);
   const [temperatures, setTemperatures] = useState([])
+  const [date, setDate] = useState([])
   const city = useSelector((state: any) => state.changeCity)
 
 
@@ -21,7 +22,16 @@ export const LeftChart = () => {
       const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`)
 
       const data = await response.json()
-      const eightHourForecast = data.list.slice(2, 10)
+      const eightHourForecast = data.list.slice(0, 8)
+      const dataHour = eightHourForecast.map((forecast: any) => {
+        const dataTime = forecast.dt_txt;
+        const time = dataTime.split(' ')[1];
+        const [hours, minutes] = time.split(':')
+        const dateWithoutSeconds = `${hours}:${minutes}`
+        return dateWithoutSeconds;
+      })
+
+      setDate(dataHour)
       setTemperatures(eightHourForecast)
     } 
 
@@ -42,7 +52,7 @@ export const LeftChart = () => {
           chartInstanceRef.current = new Chart(ctx, {
             type: 'line',
             data: {
-              labels: ['00:00', '03:00', '06:00', '09:00', '12:00', '15:00', '18:00', '23:00'],
+              labels: date,
               datasets: [
                 {
                   label: 'Tommorrow Temperatures',
