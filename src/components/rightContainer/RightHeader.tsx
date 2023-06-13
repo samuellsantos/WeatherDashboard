@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import cityNotFound from '../../assets/404.gif'
 
 export const RightHeader = () => {
   const city = useSelector((state: any) => state.changeCity)
@@ -28,6 +29,7 @@ export const RightHeader = () => {
         <h1>
           City Not Found
         </h1>
+        <img src={cityNotFound} alt="Gif 404" />
       </div>}
     </header>
   )
