@@ -6,7 +6,8 @@ export const citySlice = createSlice({
   name: 'changeCity',
   initialState,
   reducers: {
-    changeCity: (state:string, action) => {
+    changeCity: (state, action) => {
+      state
       return action.payload;
     },
   },

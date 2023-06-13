@@ -7,6 +7,7 @@ export const iconSlice = createSlice({
   initialState,
   reducers: {
     iconID: (state, action) => {
+      state
       return action.payload
     },
   },
