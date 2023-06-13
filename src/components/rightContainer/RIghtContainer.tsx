@@ -5,7 +5,7 @@ export const RIghtContainer = () => {
 
   return (
     <div 
-    className='p-8 bg-gradient-to-b from-first to-second w-5/12 text-white'>
+    className='p-8 bg-gradient-to-b from-first to-second w-full xl:w-5/12 text-white'>
       <RightHeader />
       <RightMain />
     </div>

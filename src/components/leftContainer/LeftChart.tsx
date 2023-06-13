@@ -56,7 +56,7 @@ export const LeftChart = () => {
               labels: date,
               datasets: [
                 {
-                  label: 'Tommorrow Temperatures',
+                  label: 'Temperatures',
                   fill: true,
                   data: temperatures.map((temp: any) => temp.main.temp.toFixed()),
                   backgroundColor: gradient,

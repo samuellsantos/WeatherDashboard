@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { changeCity } from '../../features/changeCityName/ChangeCityName-slice'
 
 
-export const LeftHeaeder = () => {
+export const LeftHeader = () => {
   const months = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -44,7 +44,7 @@ export const LeftHeaeder = () => {
 
   return (
     <header className='w-full text-blue-950'>
-      <div className='flex items-center justify-between gap-x-12'>
+      <div className='flex items-center justify-between gap-12 flex-col md:flex-row'>
         <div>
           <h1 className='text-3xl font-medium'>
             {formatedDate}
@@ -63,7 +63,7 @@ export const LeftHeaeder = () => {
         </div>
 
 
-        <div className='flex items-center gap-x-6'>
+        <div className='flex items-center gap-6 justify-center flex-wrap sm:justify-normal sm:gap-x-6'>
           
           <div className='relative'>
             <input 

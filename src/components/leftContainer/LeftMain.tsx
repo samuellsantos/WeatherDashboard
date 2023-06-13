@@ -117,7 +117,7 @@ export const LeftMain = () => {
   return (
     <div>
       {modal && 
-      <div className='absolute top-0'>
+      <div className='absolute top-0 right-1/4 md:right-2/4'>
         <ErrorModal />
       </div>}
 
@@ -134,12 +134,12 @@ export const LeftMain = () => {
       </div>
       
       <div className='mb-24'>
-        <div className='flex items-center gap-x-8 mb-8'>
+        <div className='flex items-center gap-x-8 mb-8 flex-wrap flex-col gap-y-4 xl:flex-row sm:flex-row  md:justify-center md:items-center'>
           <OverviewItems mode='light' icon={<FaWind size={30} />} name='Wind Speed' details={error ? '0' : `${wind?.toFixed()}km/h`}/>
           <OverviewItems mode='light' icon={<FaCloudSunRain size={30} color={'rgb(96 200 300)'}/>} name='Humidity' details={error ? '0' : `${humidity}%`}/>
         </div>
 
-        <div className='flex items-center gap-x-8'>
+        <div className='flex items-center gap-x-8 flex-col gap-y-4  sm:flex-row md:items-start md:justify-center'>
           <OverviewItems mode='light' icon={<WiBarometer size={35} />} name='Atm Pressure' details={error ? '0' : `${pressure}hpa`}/>
           <OverviewItems mode='light' icon={<IoMdSunny size={30} color={'orange'}/>} name='Temperature' details={error ? '0' : `${temperature?.toFixed()}ºC`}/>
         </div>

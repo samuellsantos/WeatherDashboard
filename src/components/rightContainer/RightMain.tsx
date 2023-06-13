@@ -45,7 +45,7 @@ export const RightMain = () => {
         <h4 className='text-light text-[14px] text-slate-400'>
           PM2.5 refers to fine particles with a diameter of 2.5 micrometers or less in the air, emitted by various sources such as fossil fuel combustion, biomass burning, industrial emissions, and dust.
         </h4>
-        <div className='mt-8 mb-28 flex items-center justify-between'>
+        <div className='mt-8 mb-28 flex items-center flex-wrap gap-y-8 justify-between 2xl:justify-between'>
           <OverviewItems name='Aqi' details={aqi} icon={<FaSmog size={30}/>} mode='dark'/>
           <OverviewItems name='Pm 2.5' details={`${pm} µg/m³`} icon={<FaCloudRain size={30}/>} mode='dark'/>
         </div>

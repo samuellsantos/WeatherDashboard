@@ -5,7 +5,7 @@ import { RIghtContainer } from "./components/rightContainer/RIghtContainer";
 function App() {
 
   return (
-      <div className="font-Poppins flex">
+      <div className="font-Poppins flex flex-col lg:flex-row">
         <Wallpaper />
         <LeftContainer />
         <RIghtContainer />

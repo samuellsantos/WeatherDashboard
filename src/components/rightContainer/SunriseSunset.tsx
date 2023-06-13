@@ -39,7 +39,7 @@ export const SunriseSunset = () => {
       <h1 className='mb-8 text-xl font-bold'>
         Sunrise & Sunset
       </h1>
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center flex-wrap gap-y-4 justify-between 2xl:justify-between'>
         <OverviewItems icon={<LuSunrise color={'yellow'} size={30}/>} mode='dark' name='Sunrise' details={sunrise}/>
         <OverviewItems icon={<LuSunset color={'yellow'} size={30}/>} mode='dark' name='Sunset' details={sunset}/>
       </div>
