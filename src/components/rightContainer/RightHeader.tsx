@@ -5,10 +5,12 @@ export const RightHeader = () => {
   const iconID = useSelector((state:any) => state.icon)
   const temperature = useSelector((state: any) => state.weather[0]);
   const description = useSelector((state: any) => state.weather[1]);
+  const error = useSelector((state: any) => state.error)
 
 
   return (
     <header>
+      {error === false ? 
       <div>
         <h1 className='text-3xl uppercase mb-24 font-bold border-b-2 border-slate-500'>
           {city}
@@ -21,7 +23,12 @@ export const RightHeader = () => {
             <h4 className='text-xl'>{description}</h4>
           </div>
         </div>
-      </div>
+      </div>  
+      : <div>
+        <h1>
+          City Not Found
+        </h1>
+      </div>}
     </header>
   )
 }

@@ -19,6 +19,7 @@ import { OverviewItems } from './OverviewItems'
 import { ErrorModal } from '../ErrorModal'
 import { LeftChart } from './LeftChart'
 import { weatherDescription, weatherTemperature } from '../../features/weather/Weather-slice'
+import { setErrorRedux } from '../../features/error/Error-slice'
 
 
 
@@ -89,6 +90,7 @@ export const LeftMain = () => {
       setIcon(data.weather[0].icon)
       setDescription(data.weather[0].description)
       setError(false) 
+      dispatch(setErrorRedux(false))
       const responseCountry = await fetch (`https://restcountries.com/v3.1/alpha/${data.sys.country}
       `)
       const dataCountry = await responseCountry.json()
@@ -96,6 +98,7 @@ export const LeftMain = () => {
 
     } catch(error) {
       dispatch(changeCity(''))
+      dispatch(setErrorRedux(true))
       setModal(true)
       setTimeout(() => {
         setModal(false)

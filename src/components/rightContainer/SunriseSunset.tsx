@@ -40,8 +40,8 @@ export const SunriseSunset = () => {
         Sunrise & Sunset
       </h1>
       <div className='flex items-center justify-between'>
-        <OverviewItems icon={<LuSunrise color={'yellow'}/>} mode='dark' name='Sunrise' details={sunrise}/>
-        <OverviewItems icon={<LuSunset color={'yellow'}/>} mode='dark' name='Sunset' details={sunset}/>
+        <OverviewItems icon={<LuSunrise color={'yellow'} size={30}/>} mode='dark' name='Sunrise' details={sunrise}/>
+        <OverviewItems icon={<LuSunset color={'yellow'} size={30}/>} mode='dark' name='Sunset' details={sunset}/>
       </div>
     </div>
   )
