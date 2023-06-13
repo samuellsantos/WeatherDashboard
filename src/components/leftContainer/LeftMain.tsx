@@ -58,8 +58,8 @@ export const LeftMain = () => {
   }, [temperature])
 
   useEffect(() => {
-    if(error) dispatch(iconID(`http://openweathermap.org/img/w/null}.png`))
-    dispatch(iconID(`http://openweathermap.org/img/w/${icon}.png`))
+    if(error) dispatch(iconID(`https://openweathermap.org/img/w/null}.png`))
+    dispatch(iconID(`https://openweathermap.org/img/w/${icon}.png`))
   }, [icon])
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export const LeftMain = () => {
   const getTemperature = async() => {
     const API_KEY = '3905b56a5d0ad9c3e625933cb4c99de6' 
     try {
-      const response = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
 
       const data = await response.json()
 
