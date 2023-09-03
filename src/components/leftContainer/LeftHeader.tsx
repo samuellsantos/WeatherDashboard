@@ -63,7 +63,7 @@ export const LeftHeader = () => {
         </div>
 
 
-        <div className='flex items-center gap-6 justify-center flex-wrap sm:justify-normal sm:gap-x-6'>
+        <div className='flex items-center gap-6 justify-center  sm:justify-normal sm:gap-x-4'>
           
           <div className='relative'>
             <input 
